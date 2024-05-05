@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="NumBases.css">
+    <title>CALCULADORA</title>
+</head>
+<body>
+    <!-- PRESENTACION -->
+    <section class="home">
+        <div class="presentacion">
+            <h1>CONVERTIDOR DE BASE NUMÉRICA</h1>
+            <div class="siguiente">
+                <a id="empezar" class="boton-inicio" href="#sistema">Empezar</a>
+            </div>
+        </div>
+    </section>
+    <div class="uno">
+        <div class="separacion-1"></div>
+    </div>
+    <!-- SISTEMA -->
+    <section id="sistema">
+        <!-- PEDIR UN NUMERO Y SOLICITAR EL TIPO DE BASE QUE ES -->
+        <div id="ingreso" class="etapa">
+            <div class="input">
+                <input id="entrada" type="text" placeholder="Ingres número" required>
+                <div class="form">
+                    <p>Ingrese el tipo numerico</p>
+                    <input type="radio" id="decimal" name="tipo" value="decimal">
+                    <label for="decimal">Decimal</label>
+                    <input type="radio" id="binario" name="tipo" value="binario">
+                    <label for="binario">Binario</label>
+                    <input type="radio" id="octal" name="tipo" value="octal">
+                    <label for="octal">Octal</label>
+                    <input type="radio" id="bcd" name="tipo" value="bcd">
+                    <label for="bcd">BCD</label>
+                </div>
+                <button id="aceptar" class="boton">Aceptar</button>
+            </div>
+        </div>
+        <!-- SOLICITAR A QUÉ BASE CONVERTIR -->
+        <div id="conversion" class="etapa">
+            <div class="cambios">
+                <p>Indique a que quiere convertir</p>
+                <input type="radio" id="decimal-cambio" name="conversion" value="decimal-cam">
+                <label for="decimal-cambio">Decimal</label>
+                <input type="radio" id="binario-cambio" name="conversion" value="binario-cam">
+                <label for="binario-cambio">Binario</label>
+                <input type="radio" id="octal-cambio" name="conversion" value="octal-cam">
+                <label for="octal-cambio">Octal</label>
+                <input type="radio" id="bcd-cambio" name="conversion" value="bcd-cam">
+                <label for="bcd-cambio">BCD</label>
+            </div>
+            <button id="convertir" class="boton">Convertir</button>
+        </div>
+        <!-- RESPUESTAS -->
+        <div id="respuesta" class="etapa">
+            <div id="pantalla" class="output"></div>
+            <button id="regresar" class="boton">Regresar</button>
+        </div>
+    </section>
+    <div class="dos">
+        <div class="separacion-2"></div>
+        <h2>Victor Ling | 2024</h2>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+        // Add smooth scrolling to all links
+        $("a").on('click', function(event) {
+        
+            // Make sure this.hash has a value before overriding default behavior
+            if (this.hash !== "") {
+            // Prevent default anchor click behavior
+            event.preventDefault();
+        
+            // Store hash
+            var hash = this.hash;
+        
+            // Using jQuery's animate() method to add smooth page scroll
+            // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+            $('html, body').animate({
+                scrollTop: $(hash).offset().top
+            }, 700, function(){
+        
+                // Add hash (#) to URL when done scrolling (default click behavior)
+                window.location.hash = hash;
+            });
+            } // End if
+        });
+        });
+    </script>
+    <script src="NumBases.js"></script>
+</body>
+</html>
