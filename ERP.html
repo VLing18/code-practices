@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="MyNormalize.css">
+    <link rel="stylesheet" href="ERP_estilos.css">
+    <script src="chart.umd.js"></script>
+    <title>ERP</title>
+</head>
+
+<body>
+    <div id="root">
+        <header class="center-flex">
+            <div id="logo">
+                <h1>Petroperu</h1>
+            </div>
+            <div id="header-bar" class="center-flex">
+                <div id="horario" class="center-flex">
+                    <p>12:30 | 20/06/2024</p>
+                </div>
+                <div id="usuario" class="center-flex">
+                    <img class="icono" src="iconos/usuario.png" alt="icono de usuario">
+                    <p>Administrador</p>
+                </div>
+                <div id="off" class="center-flex">
+                    <img src="iconos/boton-de-encendido.png" alt="boton de encendido">
+                </div>
+            </div>
+        </header>
+        <div id="principal">
+            <aside class="menu">
+                <div class="dropdown">
+                    <button class="dropbtn"><img src="iconos/hogar.png" class="icono" alt="home">Inicio</button>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn"><img src="iconos/scm.png" class="icono" alt="scm">Gestión de la Cadena de
+                        Suministros</button>
+                    <div class="dropdown-content">
+                        <a href="#gestionDeInventarios">Gestión de inventarios</a>
+                        <a href="#ordenesDeCompra">Órdenes de compra</a>
+                        <a href="#seguimientoDeEntregas">Seguimiento de entregas</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn"><img src="iconos/ladrillo.png" class="icono" alt="mrp">Planificación de
+                        Requerimientos de Materiales</button>
+                    <div class="dropdown-content">
+                        <a href="#">Requerimento de materiales</a>
+                        <a href="#">Órdenes de trabajo</a>
+                        <a href="#">Control de calidad</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn"><img src="iconos/crm.png" class="icono" alt="crm">Gestión de Relaciones con
+                        Clientes</button>
+                    <div class="dropdown-content">
+                        <a href="#">Gestión de clientes</a>
+                        <a href="#">Actividades y tareas</a>
+                        <a href="#">Soporte y atención al cliente</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn"><img src="iconos/hrm.png" class="icono" alt="hrm">Gestión de Recursos
+                        Humanos</button>
+                    <div class="dropdown-content">
+                        <a href="#">Gestion de empleados</a>
+                        <a href="#">Reclutamiento</a>
+                        <a href="#">Nomina</a>
+                        <a href="#">Evaluación de desempeño</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn"><img src="iconos/presupuesto.png" class="icono" alt="frm">Gestión de
+                        Recursos Financieros</button>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn"><img src="iconos/informe-seo.png" class="icono" alt="reporte">Reporting y
+                        Análisis</button>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn"><img src="iconos/ajuste.png" class="icono"
+                            alt="configuración">Configuración</button>
+                </div>
+            </aside>
+            <main>
+                <section id="INICIO">
+                    <div id="cont-inicial" class="center-flex">
+                        <div id="calendario">
+                            <img src="imagenes/calendario.jpg" alt="calendario">
+                        </div>
+                        <div id="datos">
+                            <div class="grid-container">
+                                <div class="card card-usuario">
+                                    <h3>Clientes</h3>
+                                    <div class="cantidad">1000000</div>
+                                </div>
+                                <div class="card card-producto">
+                                    <h3>Producto</h3>
+                                    <div class="cantidad">200</div>
+                                </div>
+                                <div class="card card-proveedores">
+                                    <h3>Proveedores</h3>
+                                    <div class="cantidad">75</div>
+                                </div>
+                                <div class="card card-contactos">
+                                    <h3>Contactos</h3>
+                                    <div class="cantidad">320</div>
+                                </div>
+                            </div>
+                            <div class="more-info">
+                                <a href="#">Más información</a>
+                            </div>
+                        </div>
+                    </div>
+                    <canvas id="graficoVentas"></canvas>
+                    <script defer type="module">
+                        // Datos proporcionados
+                        const datos = {
+                            labels: ['2017', '2018', '2019', '2020', '2021', '2022'],
+                            valores: [120, 130, 105, 90, 95, 80]
+                        };
+
+                        // Configuración del gráfico
+                        var ctx = document.getElementById('graficoVentas').getContext('2d');
+                        var graficoVentas = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: datos.labels,
+                                datasets: [{
+                                    label: 'Venta nacional de combustibles líquidos y GLP',
+                                    data: datos.valores,
+                                    fill: true,
+                                    borderColor: 'rgb(75, 192, 192)',
+                                    tension: 0.1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                },
+                                plugins: {
+                                    title: {
+                                        display: true,
+                                        text: 'Venta nacional de combustibles líquidos y GLP',
+                                        align: 'start'
+                                    },
+                                    legend: {
+                                        display: false
+                                    }
+                                }
+                            }
+                        });
+                    </script>
+                </section>
+                <section id="SCM">
+                    <h2>Gestion de la cadena de suministros</h2>
+                    <div id="scm" class="center-flex">
+                        <div class="barras">
+                            <canvas id="graficoBarras"></canvas>
+                            <script defer>
+                                // Datos proporcionados
+                                const datos2 = {
+                                    labels: ['Críticos', 'Normales', 'Sobrestock'],
+                                    valores: [500, 2000, 1500] // Valores de ejemplo para una empresa grande
+                                };
+
+                                // Configuración del gráfico
+                                var ctx = document.getElementById('graficoBarras').getContext('2d');
+                                var graficoBarras = new Chart(ctx, {
+                                    type: 'bar',
+                                    data: {
+                                        labels: datos2.labels,
+                                        datasets: [{
+                                            label: 'Niveles de Inventario',
+                                            data: datos2.valores,
+                                            backgroundColor: [
+                                                'rgba(255, 99, 132, 0.2)', // Rojo para Críticos
+                                                'rgba(54, 162, 235, 0.2)', // Azul para Normales
+                                                'rgba(255, 206, 86, 0.2)'  // Amarillo para Sobrestock
+                                            ],
+                                            borderColor: [
+                                                'rgba(255, 99, 132, 1)', // Rojo para Críticos
+                                                'rgba(54, 162, 235, 1)', // Azul para Normales
+                                                'rgba(255, 206, 86, 1)'  // Amarillo para Sobrestock
+                                            ],
+                                            borderWidth: 1
+                                        }]
+                                    },
+                                    options: {
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true
+                                            }
+                                        },
+                                        plugins: {
+                                            title: {
+                                                display: true,
+                                                text: 'Niveles de Inventario por Categoría',
+                                                align: 'start',  // Alinea el título a la izquierda
+                                                font: {
+                                                    size: 18  // Tamaño de la fuente del título
+                                                }
+                                            },
+                                            legend: {
+                                                display: false
+                                            }
+                                        },
+                                        responsive: true,
+                                        maintainAspectRatio: false
+                                    }
+                                });
+                            </script>
+                        </div>
+                        <div class="pastel">
+                            <canvas id="graficoCircular"></canvas>
+                            <script defer>
+                                // Datos proporcionados
+                                const datos3 = {
+                                    labels: ['Pendientes', 'En Tránsito', 'Recibidas'],
+                                    valores: [150, 300, 200] // Valores de ejemplo para una empresa grande
+                                };
+
+                                // Configuración del gráfico
+                                var ctx = document.getElementById('graficoCircular').getContext('2d');
+                                var graficoCircular = new Chart(ctx, {
+                                    type: 'pie',
+                                    data: {
+                                        labels: datos3.labels,
+                                        datasets: [{
+                                            label: 'Distribución de Órdenes de Compra',
+                                            data: datos3.valores,
+                                            backgroundColor: [
+                                                'rgba(255, 99, 132, 0.2)', // Rojo para Pendientes
+                                                'rgba(54, 162, 235, 0.2)', // Azul para En Tránsito
+                                                'rgba(75, 192, 192, 0.2)'  // Verde para Recibidas
+                                            ],
+                                            borderColor: [
+                                                'rgba(255, 99, 132, 1)', // Rojo para Pendientes
+                                                'rgba(54, 162, 235, 1)', // Azul para En Tránsito
+                                                'rgba(75, 192, 192, 1)'  // Verde para Recibidas
+                                            ],
+                                            borderWidth: 1
+                                        }]
+                                    },
+                                    options: {
+                                        plugins: {
+                                            title: {
+                                                display: true,
+                                                text: 'Distribución de Órdenes de Compra por Estado',
+                                                align: 'start',  // Alinea el título a la izquierda
+                                                font: {
+                                                    size: 18  // Tamaño de la fuente del título
+                                                }
+                                            }
+                                        },
+                                        responsive: true,
+                                        maintainAspectRatio: false
+                                    }
+                                });
+                            </script>
+                        </div>
+                    </div>
+                    <div id="gestionDeInventarios" class="sub">
+                        <h2>Gestion de inventarios</h2>
+                        <div class="center-flex">
+                            <form class="">
+                                <label for="codigo">Codigo de producto</label>
+                                <input id="codigo" placeholder="Ingrese el codigo" type="text">
+                                <label for="nombre">Nombre del producto</label>
+                                <input id="nombre" placeholder="Ingrese nombre" type="text">
+                                <label for="categoria" aria-placeholder="Ingrese nombre">Categoria de producto</label>
+                                <input id="categoria" placeholder="Ingrese categoria" type="text">
+                                <label for="cantidad">Cantidad en stock</label>
+                                <input id="cantidad" placeholder="Ingrece cantidad" type="text">
+                                <label for="ubicacion">Ubicacion en almacen</label>
+                                <input id="ubicacion" placeholder="Ingrece ubicacion" type="text">
+                            </form>
+                            <div>
+                                <h1>Tabla de Productos - Petroperú</h1>
+                                <table id="productos-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Código</th>
+                                            <th>Nombre</th>
+                                            <th>Categoría</th>
+                                            <th>Cantidad en Stock</th>
+                                            <th>Ubicación en Almacén</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Filas de productos se generarán aquí -->
+                                    </tbody>
+                                </table>
+                                <script defer>
+                                    const categorias = ["Criticos", "Normales", "Sobrestock"];
+                                    const ubicaciones = ["Almacén A", "Almacén B", "Almacén C", "Almacén D"];
+
+                                    function generarCodigo() {
+                                        return 'P' + Math.floor(Math.random() * 100000).toString().padStart(5, '0');
+                                    }
+
+                                    function generarNombre() {
+                                        const productos = ["Gasolina", "Diesel", "Aceite de Motor", "Gas Propano", "Asfalto Líquido"];
+                                        return productos[Math.floor(Math.random() * productos.length)];
+                                    }
+
+                                    function generarCategoria() {
+                                        return categorias[Math.floor(Math.random() * categorias.length)];
+                                    }
+
+                                    function generarCantidad() {
+                                        return Math.floor(Math.random() * 1000);
+                                    }
+
+                                    function generarUbicacion() {
+                                        return ubicaciones[Math.floor(Math.random() * ubicaciones.length)];
+                                    }
+
+                                    function generarFilaProducto() {
+                                        return `
+                                            <tr>
+                                                <td>${generarCodigo()}</td>
+                                                <td>${generarNombre()}</td>
+                                                <td>${generarCategoria()}</td>
+                                                <td>${generarCantidad()}</td>
+                                                <td>${generarUbicacion()}</td>
+                                            </tr>
+                                        `;
+                                    }
+
+                                    function generarTablaProductos(numFilas) {
+                                        const tbody = document.querySelector('#productos-table tbody');
+                                        let filas = '';
+                                        for (let i = 0; i < numFilas; i++) {
+                                            filas += generarFilaProducto();
+                                        }
+                                        tbody.innerHTML = filas;
+                                    }
+
+                                    // Generar una tabla con 10 productos aleatorios al cargar la página
+                                    generarTablaProductos(10);
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="ordenesDeCompra" class="sub">
+                        <h2>Gestión de Órdenes de Compra</h2>
+                        <div class="center-flex">
+                            <form>
+                                <label for="numeroOrden">Número de Orden</label>
+                                <input id="numeroOrden" placeholder="Ingrese el número de orden" type="text">
+                                <label for="proveedor">Proveedor</label>
+                                <input id="proveedor" placeholder="Ingrese proveedor" type="text">
+                                <label for="fechaOrden">Fecha de Orden</label>
+                                <input id="fechaOrden" placeholder="Ingrese fecha de orden" type="date">
+                                <label for="fechaEntrega">Fecha Estimada de Entrega</label>
+                                <input id="fechaEntrega" placeholder="Ingrese fecha estimada de entrega" type="date">
+                                <label for="productos">Productos (con cantidad y precio)</label>
+                                <input id="productos" placeholder="Ingrese productos, cantidad y precio" type="text">
+                                <label for="estado">Estado de la Orden</label>
+                                <input id="estado" placeholder="Ingrese estado de la orden" type="text">
+                            </form>
+                            <div>
+                                <h1>Tabla de Órdenes de Compra - Petroperú</h1>
+                                <table id="ordenes-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Número de Orden</th>
+                                            <th>Proveedor</th>
+                                            <th>Fecha de Orden</th>
+                                            <th>Fecha Estimada de Entrega</th>
+                                            <th>Productos (Cantidad y Precio)</th>
+                                            <th>Estado de la Orden</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Filas de órdenes de compra se generarán aquí -->
+                                    </tbody>
+                                </table>
+                                <script defer>
+                                    const proveedores = ["Proveedor A", "Proveedor B", "Proveedor C", "Proveedor D"];
+                                    const estados = ["Pendiente", "En Proceso", "Completada", "Cancelada"];
+
+                                    function generarNumeroOrden() {
+                                        return 'OC' + Math.floor(Math.random() * 100000).toString().padStart(5, '0');
+                                    }
+
+                                    function generarProveedor() {
+                                        return proveedores[Math.floor(Math.random() * proveedores.length)];
+                                    }
+
+                                    function generarFecha() {
+                                        const start = new Date(2023, 0, 1);
+                                        const end = new Date();
+                                        const date = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+                                        return date.toISOString().split('T')[0];
+                                    }
+
+                                    function generarProductos() {
+                                        const productos = ["Gasolina - 1000L - $1.2/L", "Diesel - 500L - $1.1/L", "Aceite de Motor - 100L - $3.0/L", "Gas Propano - 200L - $0.8/L", "Asfalto Líquido - 300L - $2.5/L"];
+                                        return productos[Math.floor(Math.random() * productos.length)];
+                                    }
+
+                                    function generarEstado() {
+                                        return estados[Math.floor(Math.random() * estados.length)];
+                                    }
+
+                                    function generarFilaOrden() {
+                                        return `
+                                            <tr>
+                                                <td>${generarNumeroOrden()}</td>
+                                                <td>${generarProveedor()}</td>
+                                                <td>${generarFecha()}</td>
+                                                <td>${generarFecha()}</td>
+                                                <td>${generarProductos()}</td>
+                                                <td>${generarEstado()}</td>
+                                            </tr>
+                                        `;
+                                    }
+
+                                    function generarTablaOrdenes(numFilas) {
+                                        const tbody = document.querySelector('#ordenes-table tbody');
+                                        let filas = '';
+                                        for (let i = 0; i < numFilas; i++) {
+                                            filas += generarFilaOrden();
+                                        }
+                                        tbody.innerHTML = filas;
+                                    }
+
+                                    // Generar una tabla con 10 órdenes de compra aleatorias al cargar la página
+                                    generarTablaOrdenes(10);
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section id="MRP">
+                    <h2>Planificación de Requerimientos de Materiales</h2>
+                    <div class="center-flex sub">
+                        <div class="cuadrodebarras">
+                            <canvas id="myChart"></canvas>
+                            <script>
+                                // Datos ficticios para el gráfico
+                                var data = {
+                                    labels: ['Capacidad Disponible', 'Carga de Trabajo Proyectada'],
+                                    datasets: [{
+                                        data: [70, 30], // Porcentajes (ejemplo: 70% y 30%)
+                                        backgroundColor: ['#6EB5FF', '#FFB86F'],
+                                        borderWidth: 1
+                                    }]
+                                };
+
+                                // Configuración del gráfico
+                                var options = {
+                                    responsive: true,
+                                    maintainAspectRatio: false,
+                                    legend: {
+                                        position: 'bottom',
+                                        labels: {
+                                            boxWidth: 10
+                                        }
+                                    },
+                                    tooltips: {
+                                        callbacks: {
+                                            label: function (tooltipItem, data) {
+                                                var dataset = data.datasets[tooltipItem.datasetIndex];
+                                                var total = dataset.data.reduce(function (previousValue, currentValue, currentIndex, array) {
+                                                    return previousValue + currentValue;
+                                                });
+                                                var currentValue = dataset.data[tooltipItem.index];
+                                                var percentage = Math.round((currentValue / total) * 100);
+                                                return percentage + '%';
+                                            }
+                                        }
+                                    }
+                                };
+
+                                // Obtener el contexto del canvas
+                                var ctx = document.getElementById('myChart').getContext('2d');
+
+                                // Crear el gráfico de pastel
+                                var myPieChart = new Chart(ctx, {
+                                    type: 'pie',
+                                    data: data,
+                                    options: options
+                                });
+                            </script>
+                        </div>
+                        <div class="tabla">
+                            <h2>Requerimientos de Materiales - PetroPerú</h2>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Material</th>
+                                        <th>Cantidad requerida</th>
+                                        <th>Fecha de entrega</th>
+                                        <th>Proveedor</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Tuberías de acero</td>
+                                        <td>500 metros</td>
+                                        <td>15/07/2024</td>
+                                        <td>Acero S.A.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Válvulas de control</td>
+                                        <td>20 unidades</td>
+                                        <td>20/07/2024</td>
+                                        <td>Industrias Válvulas Ltda.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bombas centrífugas</td>
+                                        <td>5 unidades</td>
+                                        <td>25/07/2024</td>
+                                        <td>Bombas y Motores S.R.L.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Transformadores eléctricos</td>
+                                        <td>10 unidades</td>
+                                        <td>10/08/2024</td>
+                                        <td>Eléctrica Transforma S.A.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+                <section id="CRM">
+                    <h2>Gestion de relaciones con el cliente</h2>
+                    <div class="sub">
+                        <h2>Gestion de clientes</h2>
+                        <div class="center-flex">
+                            <div>
+                                <canvas id="graficoCircular2"></canvas>
+                                <script>
+                                    // Datos de ejemplo para la distribución de clientes por segmento
+                                    const datos5 = {
+                                        labels: ['Residencial', 'Comercial', 'Industrial'],
+                                        datasets: [{
+                                            label: 'Clientes por Segmento',
+                                            data: [65, 25, 10], // Porcentajes ficticios de clientes por segmento
+                                            backgroundColor: [
+                                                'rgba(255, 99, 132, 0.6)', // Rojo para Residencial
+                                                'rgba(54, 162, 235, 0.6)', // Azul para Comercial
+                                                'rgba(255, 206, 86, 0.6)'  // Amarillo para Industrial
+                                            ],
+                                            borderColor: [
+                                                'rgba(255, 99, 132, 1)',
+                                                'rgba(54, 162, 235, 1)',
+                                                'rgba(255, 206, 86, 1)'
+                                            ],
+                                            borderWidth: 1
+                                        }]
+                                    };
+
+                                    // Configuración del gráfico
+                                    var ctx = document.getElementById('graficoCircular2').getContext('2d');
+                                    var graficoCircular = new Chart(ctx, {
+                                        type: 'doughnut',
+                                        data: datos5,
+                                        options: {
+                                            plugins: {
+                                                title: {
+                                                    display: true,
+                                                    text: 'Distribución de Clientes por Segmento - Petroperú',
+                                                    font: {
+                                                        size: 18
+                                                    }
+                                                },
+                                                legend: {
+                                                    position: 'bottom',
+                                                }
+                                            }
+                                        }
+                                    });
+                                </script>
+
+                            </div>
+                            <div>
+                                <h2>Tabla de Datos de Clientes - PetroPerú</h2>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre del cliente</th>
+                                            <th>Categoría</th>
+                                            <th>Volumen de compras</th>
+                                            <th>Saldo pendiente</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>PetroGás S.A.C.</td>
+                                            <td>Industrial</td>
+                                            <td>120,000 galones</td>
+                                            <td>$50,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Energía Total E.I.R.L.</td>
+                                            <td>Comercial</td>
+                                            <td>80,000 galones</td>
+                                            <td>$20,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>GASPERU S.A.</td>
+                                            <td>Industrial</td>
+                                            <td>150,000 galones</td>
+                                            <td>$65,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>PetroSoluciones Ltda.</td>
+                                            <td>Industrial</td>
+                                            <td>90,000 galones</td>
+                                            <td>$30,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Energía Limpia S.A.</td>
+                                            <td>Comercial</td>
+                                            <td>60,000 galones</td>
+                                            <td>$15,000</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sub">
+                        <h2>Actividades y tareas</h2>
+                        <div class="center-flex">
+                            <img src="imagenes/calendario.jpg" alt="calendario">
+                            <div>
+                                <h2>Tabla de Actividades - PetroPerú</h2>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Actividad</th>
+                                            <th>Responsable</th>
+                                            <th>Estado Actual</th>
+                                            <th>Fecha de Vencimiento</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Implementación de sistema de gestión de calidad</td>
+                                            <td>Juan Pérez</td>
+                                            <td>En Progreso</td>
+                                            <td>30/09/2024</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Revisión de protocolos de seguridad</td>
+                                            <td>María López</td>
+                                            <td>Pendiente</td>
+                                            <td>15/07/2024</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Capacitación en nuevas normativas ambientales</td>
+                                            <td>Carlos Ramírez</td>
+                                            <td>Completada</td>
+                                            <td>10/08/2024</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Informe de gestión trimestral</td>
+                                            <td>Ana Gutiérrez</td>
+                                            <td>En Revisión</td>
+                                            <td>25/07/2024</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Actualización de procedimientos operativos</td>
+                                            <td>Luis Torres</td>
+                                            <td>En Proceso de Aprobación</td>
+                                            <td>20/08/2024</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="" class="sub">
+                        <h2>Soporte y Atencion al cliente</h2>
+                        <div>
+                            <div class="grafico">
+                                <canvas id="graficoBarras2"></canvas>
+                                <script>
+                                    // Datos de ejemplo para el tiempo promedio de respuesta por tipo de solicitud
+                                    const datos6 = {
+                                        labels: ['Consulta', 'Reclamo', 'Solicitud', 'Soporte'],
+                                        datasets: [{
+                                            label: 'Tiempo Promedio de Respuesta (minutos)',
+                                            data: [15, 25, 20, 18], // Tiempos promedio de respuesta ficticios (en minutos)
+                                            backgroundColor: [
+                                                'rgba(255, 99, 132, 0.6)', // Rojo para Consulta
+                                                'rgba(54, 162, 235, 0.6)', // Azul para Reclamo
+                                                'rgba(255, 206, 86, 0.6)', // Amarillo para Solicitud
+                                                'rgba(75, 192, 192, 0.6)'  // Verde para Soporte
+                                            ],
+                                            borderColor: [
+                                                'rgba(255, 99, 132, 1)',
+                                                'rgba(54, 162, 235, 1)',
+                                                'rgba(255, 206, 86, 1)',
+                                                'rgba(75, 192, 192, 1)'
+                                            ],
+                                            borderWidth: 1
+                                        }]
+                                    };
+
+                                    // Configuración del gráfico
+                                    var ctx = document.getElementById('graficoBarras2').getContext('2d');
+                                    var graficoBarras = new Chart(ctx, {
+                                        type: 'bar',
+                                        data: datos6,
+                                        options: {
+                                            plugins: {
+                                                title: {
+                                                    display: true,
+                                                    text: 'Tiempo Promedio de Respuesta por Tipo de Solicitud - Petroperú',
+                                                    font: {
+                                                        size: 18
+                                                    }
+                                                },
+                                                legend: {
+                                                    position: 'bottom',
+                                                }
+                                            },
+                                            scales: {
+                                                y: {
+                                                    beginAtZero: true,
+                                                    title: {
+                                                        display: true,
+                                                        text: 'Tiempo Promedio (minutos)'
+                                                    }
+                                                },
+                                                x: {
+                                                    title: {
+                                                        display: true,
+                                                        text: 'Tipos de Solicitud'
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    });
+                                </script>
+                            </div>
+                            <div>
+                                <h2>Tabla de Tickets - PetroPerú</h2>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Número de Ticket</th>
+                                            <th>Estado Actual</th>
+                                            <th>Fecha de Apertura</th>
+                                            <th>Última Actualización</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>TCKT-2024-001</td>
+                                            <td>En Proceso</td>
+                                            <td>10/06/2024</td>
+                                            <td>15/06/2024</td>
+                                        </tr>
+                                        <tr>
+                                            <td>TCKT-2024-002</td>
+                                            <td>Abierto</td>
+                                            <td>12/06/2024</td>
+                                            <td>13/06/2024</td>
+                                        </tr>
+                                        <tr>
+                                            <td>TCKT-2024-003</td>
+                                            <td>Resuelto</td>
+                                            <td>14/06/2024</td>
+                                            <td>14/06/2024</td>
+                                        </tr>
+                                        <tr>
+                                            <td>TCKT-2024-004</td>
+                                            <td>En Proceso</td>
+                                            <td>16/06/2024</td>
+                                            <td>19/06/2024</td>
+                                        </tr>
+                                        <tr>
+                                            <td>TCKT-2024-005</td>
+                                            <td>En Proceso</td>
+                                            <td>18/06/2024</td>
+                                            <td>20/06/2024</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section id="HRM">
+                    <h2>Gestion de Recursos Humanos</h2>
+                    <div class="sub">
+                        <h2>Gestion de empleados</h2>
+                        <div class="center-flex">
+                            <div>
+                                <canvas id="graficoSectores" width="400" height="400"></canvas>
+                                <script>
+                                    // Datos de ejemplo para la distribución de empleados por departamento
+                                    const datos7 = {
+                                        labels: ['Administración', 'Ventas', 'Producción', 'Recursos Humanos', 'Logística'],
+                                        datasets: [{
+                                            label: 'Empleados por Departamento',
+                                            data: [30, 20, 25, 15, 10], // Número ficticio de empleados por departamento
+                                            backgroundColor: [
+                                                'rgba(255, 99, 132, 0.6)', // Rojo para Administración
+                                                'rgba(54, 162, 235, 0.6)', // Azul para Ventas
+                                                'rgba(255, 206, 86, 0.6)', // Amarillo para Producción
+                                                'rgba(75, 192, 192, 0.6)', // Verde para Recursos Humanos
+                                                'rgba(153, 102, 255, 0.6)' // Morado para Logística
+                                            ],
+                                            borderColor: [
+                                                'rgba(255, 99, 132, 1)',
+                                                'rgba(54, 162, 235, 1)',
+                                                'rgba(255, 206, 86, 1)',
+                                                'rgba(75, 192, 192, 1)',
+                                                'rgba(153, 102, 255, 1)'
+                                            ],
+                                            borderWidth: 1
+                                        }]
+                                    };
+
+                                    // Configuración del gráfico
+                                    var ctx = document.getElementById('graficoSectores').getContext('2d');
+                                    var graficoSectores = new Chart(ctx, {
+                                        type: 'pie',
+                                        data: datos7,
+                                        options: {
+                                            plugins: {
+                                                title: {
+                                                    display: true,
+                                                    text: 'Distribución de Empleados por Departamento - Petroperú',
+                                                    font: {
+                                                        size: 18
+                                                    }
+                                                },
+                                                legend: {
+                                                    position: 'bottom',
+                                                }
+                                            }
+                                        }
+                                    });
+                                </script>
+                            </div>
+                            <div>
+                                <h2>Tabla de Empleados - PetroPerú</h2>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre del Empleado</th>
+                                            <th>Departamento</th>
+                                            <th>Posición</th>
+                                            <th>Fecha de Ingreso</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>José Rodríguez</td>
+                                            <td>Administración</td>
+                                            <td>Gerente de Recursos Humanos</td>
+                                            <td>15/03/2010</td>
+                                        </tr>
+                                        <tr>
+                                            <td>María García</td>
+                                            <td>Ventas</td>
+                                            <td>Contadora Principal</td>
+                                            <td>20/06/2015</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Luis Martínez</td>
+                                            <td>Producción</td>
+                                            <td>Ingeniero de Operaciones</td>
+                                            <td>10/09/2018</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ana Sánchez</td>
+                                            <td>Recursos Humanos</td>
+                                            <td>Desarrolladora Senior</td>
+                                            <td>05/02/2013</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Pablo López</td>
+                                            <td>Logística</td>
+                                            <td>Especialista en Marketing Digital</td>
+                                            <td>25/11/2017</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="Reclutamiento" class="sub">
+                        <h2>Reclutamiento</h2>
+                        <div>
+                            <div class="center-flex grafico">
+                                <canvas id="graficoSectores2" width="400" height="400"></canvas>
+                                <script>
+                                    // Datos de ejemplo para la distribución de empleados por departamento
+                                    const datos8 = {
+                                        labels: ['Administración', 'Ventas', 'Producción', 'Recursos Humanos', 'Logística'],
+                                        datasets: [{
+                                            label: 'Empleados por Departamento',
+                                            data: [30, 20, 25, 15, 10], // Número ficticio de empleados por departamento
+                                            backgroundColor: [
+                                                'rgba(255, 99, 132, 0.6)', // Rojo para Administración
+                                                'rgba(54, 162, 235, 0.6)', // Azul para Ventas
+                                                'rgba(255, 206, 86, 0.6)', // Amarillo para Producción
+                                                'rgba(75, 192, 192, 0.6)', // Verde para Recursos Humanos
+                                                'rgba(153, 102, 255, 0.6)' // Morado para Logística
+                                            ],
+                                            borderColor: [
+                                                'rgba(255, 99, 132, 1)',
+                                                'rgba(54, 162, 235, 1)',
+                                                'rgba(255, 206, 86, 1)',
+                                                'rgba(75, 192, 192, 1)',
+                                                'rgba(153, 102, 255, 1)'
+                                            ],
+                                            borderWidth: 1
+                                        }]
+                                    };
+
+                                    // Configuración del gráfico
+                                    var ctx = document.getElementById('graficoSectores2').getContext('2d');
+                                    var graficoSectores = new Chart(ctx, {
+                                        type: 'pie',
+                                        data: datos8,
+                                        options: {
+                                            plugins: {
+                                                title: {
+                                                    display: true,
+                                                    text: 'Distribución de Empleados por Departamento - Petroperú',
+                                                    font: {
+                                                        size: 18
+                                                    }
+                                                },
+                                                legend: {
+                                                    position: 'bottom',
+                                                }
+                                            }
+                                        }
+                                    });
+                                </script>
+                            </div>
+                            <div>
+                                <h2>Tabla de Candidatos - PetroPerú</h2>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre del Candidato</th>
+                                            <th>Posición Aplicada</th>
+                                            <th>Estado Actual</th>
+                                            <th>Fecha de Última Actualización</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Departamento de Administración -->
+                                        <tr>
+                                            <td>María Pérez</td>
+                                            <td>Analista Financiero</td>
+                                            <td>Entrevista Pendiente</td>
+                                            <td>12/06/2024</td>
+                                        </tr>
+                                        <tr>
+                                            <td>José González</td>
+                                            <td>Asistente Administrativo</td>
+                                            <td>CV Recibido</td>
+                                            <td>10/06/2024</td>
+                                        </tr>
+                            
+                                        <!-- Departamento de Ventas -->
+                                        <tr>
+                                            <td>Ana Martínez</td>
+                                            <td>Ejecutivo de Ventas</td>
+                                            <td>Entrevista Realizada</td>
+                                            <td>15/06/2024</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Luis Torres</td>
+                                            <td>Representante de Ventas</td>
+                                            <td>CV Recibido</td>
+                                            <td>11/06/2024</td>
+                                        </tr>
+                            
+                                        <!-- Departamento de Producción -->
+                                        <tr>
+                                            <td>Pablo Ramírez</td>
+                                            <td>Supervisor de Producción</td>
+                                            <td>CV Recibido</td>
+                                            <td>14/06/2024</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Carolina Díaz</td>
+                                            <td>Operario de Máquinas</td>
+                                            <td>Entrevista Pendiente</td>
+                                            <td>13/06/2024</td>
+                                        </tr>
+                            
+                                        <!-- Departamento de Recursos Humanos -->
+                                        <tr>
+                                            <td>Ricardo Sánchez</td>
+                                            <td>Analista de RRHH</td>
+                                            <td>Entrevista Realizada</td>
+                                            <td>16/06/2024</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Elena López</td>
+                                            <td>Asistente de Recursos Humanos</td>
+                                            <td>CV Recibido</td>
+                                            <td>09/06/2024</td>
+                                        </tr>
+                            
+                                        <!-- Departamento de Logística -->
+                                        <tr>
+                                            <td>Manuel Castro</td>
+                                            <td>Coordinador de Logística</td>
+                                            <td>Entrevista Pendiente</td>
+                                            <td>17/06/2024</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Isabel Fernández</td>
+                                            <td>Asistente de Logística</td>
+                                            <td>CV Recibido</td>
+                                            <td>08/06/2024</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="Nomina" class="sub">
+                        <h2>Nomina</h2>
+                        <div class="center-flex">
+                        <div class="grf-rh">
+                            <canvas id="graficoArea" width="400" height="400"></canvas>
+                            <script>
+                                // Datos de ejemplo para la evolución mensual de los costos de nómina
+                                const datos9 = {
+                                    labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                                    datasets: [{
+                                        label: 'Costos de Nómina',
+                                        data: [25000, 28000, 30000, 27000, 32000, 31000, 33000, 35000, 34000, 36000, 38000, 37000], // Costos de nómina ficticios mensuales
+                                        backgroundColor: 'rgba(54, 162, 235, 0.6)', // Color del área
+                                        borderColor: 'rgba(54, 162, 235, 1)', // Borde del área
+                                        borderWidth: 2,
+                                        fill: true // Rellenar el área bajo la línea
+                                    }]
+                                };
+                        
+                                // Configuración del gráfico
+                                var ctx = document.getElementById('graficoArea').getContext('2d');
+                                var graficoArea = new Chart(ctx, {
+                                    type: 'line',
+                                    data: datos9,
+                                    options: {
+                                        plugins: {
+                                            title: {
+                                                display: true,
+                                                text: 'Evolución Mensual de los Costos de Nómina',
+                                                font: {
+                                                    size: 18
+                                                }
+                                            },
+                                            legend: {
+                                                display: false
+                                            }
+                                        },
+                                        scales: {
+                                            x: {
+                                                title: {
+                                                    display: true,
+                                                    text: 'Mes'
+                                                }
+                                            },
+                                            y: {
+                                                title: {
+                                                    display: true,
+                                                    text: 'Costos de Nómina'
+                                                },
+                                                beginAtZero: true
+                                            }
+                                        }
+                                    }
+                                });
+                            </script>
+                        </div>
+                        <div class="grf-rh">
+                            <canvas id="graficoBarrasAgrupadas" width="600" height="400"></canvas>
+                            <script>
+                                // Datos de ejemplo para la asistencia por turno y por mes
+                                const datosA = {
+                                    labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
+                                    datasets: [{
+                                        label: 'Mañana', // Etiqueta para el turno de la mañana
+                                        data: [20, 25, 22, 18, 23, 19], // Datos ficticios de asistencia por mes para el turno de la mañana
+                                        backgroundColor: 'rgba(255, 99, 132, 0.6)', // Color de las barras para el turno de la mañana
+                                        borderColor: 'rgba(255, 99, 132, 1)',
+                                        borderWidth: 1
+                                    }, {
+                                        label: 'Tarde', // Etiqueta para el turno de la tarde
+                                        data: [18, 15, 17, 21, 16, 20], // Datos ficticios de asistencia por mes para el turno de la tarde
+                                        backgroundColor: 'rgba(54, 162, 235, 0.6)', // Color de las barras para el turno de la tarde
+                                        borderColor: 'rgba(54, 162, 235, 1)',
+                                        borderWidth: 1
+                                    }]
+                                };
+                        
+                                // Configuración del gráfico
+                                var ctx = document.getElementById('graficoBarrasAgrupadas').getContext('2d');
+                                var graficoBarrasAgrupadas = new Chart(ctx, {
+                                    type: 'bar',
+                                    data: datosA,
+                                    options: {
+                                        plugins: {
+                                            title: {
+                                                display: true,
+                                                text: 'Asistencia por Turno y por Mes',
+                                                font: {
+                                                    size: 18
+                                                }
+                                            },
+                                            legend: {
+                                                position: 'top',
+                                            }
+                                        },
+                                        scales: {
+                                            x: {
+                                                stacked: true,
+                                                title: {
+                                                    display: true,
+                                                    text: 'Mes'
+                                                }
+                                            },
+                                            y: {
+                                                stacked: true,
+                                                title: {
+                                                    display: true,
+                                                    text: 'Asistencia'
+                                                },
+                                                beginAtZero: true
+                                            }
+                                        }
+                                    }
+                                });
+                            </script>
+                        </div>
+                        </div>
+                    </div>
+                </section>
+                <section id="FRM">
+                    <h2>Gestion de recursos financieros</h2>
+                    <div id="ContabilidadGeneral" class="sub">
+                        <div class="center-flex">
+                            <div class="grf">
+                                <canvas id="graficoBarrasApiladas" width="600" height="400"></canvas>
+                                <script>
+                                    // Datos de ejemplo para el Estado de Resultados (ingresos, costos, beneficio neto)
+                                    const datosB = {
+                                        labels: ['2021', '2022', '2023'],
+                                        datasets: [{
+                                            label: 'Ingresos',
+                                            data: [50000, 55000, 60000], // Datos ficticios de ingresos para cada año
+                                            backgroundColor: 'rgba(54, 162, 235, 0.6)', // Color para ingresos
+                                            borderColor: 'rgba(54, 162, 235, 1)',
+                                            borderWidth: 1
+                                        }, {
+                                            label: 'Costos',
+                                            data: [30000, 32000, 35000], // Datos ficticios de costos para cada año
+                                            backgroundColor: 'rgba(255, 99, 132, 0.6)', // Color para costos
+                                            borderColor: 'rgba(255, 99, 132, 1)',
+                                            borderWidth: 1
+                                        }, {
+                                            label: 'Beneficio Neto',
+                                            data: [20000, 23000, 25000], // Datos ficticios de beneficio neto para cada año
+                                            backgroundColor: 'rgba(75, 192, 192, 0.6)', // Color para beneficio neto
+                                            borderColor: 'rgba(75, 192, 192, 1)',
+                                            borderWidth: 1
+                                        }]
+                                    };
+                            
+                                    // Configuración del gráfico
+                                    var ctx = document.getElementById('graficoBarrasApiladas').getContext('2d');
+                                    var graficoBarrasApiladas = new Chart(ctx, {
+                                        type: 'bar',
+                                        data: datosB,
+                                        options: {
+                                            plugins: {
+                                                title: {
+                                                    display: true,
+                                                    text: 'Estado de Resultados',
+                                                    font: {
+                                                        size: 18
+                                                    }
+                                                },
+                                                legend: {
+                                                    position: 'bottom',
+                                                }
+                                            },
+                                            scales: {
+                                                x: {
+                                                    stacked: true,
+                                                    title: {
+                                                        display: true,
+                                                        text: 'Año'
+                                                    }
+                                                },
+                                                y: {
+                                                    stacked: true,
+                                                    title: {
+                                                        display: true,
+                                                        text: 'Cantidad (en miles)'
+                                                    },
+                                                    beginAtZero: true
+                                                }
+                                            }
+                                        }
+                                    });
+                                </script>
+                            </div>
+                            <div class="grf">
+                                <canvas id="graficoPastel3" width="400" height="400"></canvas>
+                                <script>
+                                    // Datos de ejemplo para la distribución de cuentas por pagar por proveedor
+                                    const datosC = {
+                                        labels: ['Proveedor A', 'Proveedor B', 'Proveedor C', 'Proveedor D'],
+                                        datasets: [{
+                                            label: 'Cuentas por Pagar por Proveedor',
+                                            data: [30000, 25000, 20000, 15000], // Montos ficticios de cuentas por pagar por proveedor
+                                            backgroundColor: [
+                                                'rgba(255, 99, 132, 0.6)', // Color para Proveedor A
+                                                'rgba(54, 162, 235, 0.6)', // Color para Proveedor B
+                                                'rgba(255, 206, 86, 0.6)', // Color para Proveedor C
+                                                'rgba(75, 192, 192, 0.6)' // Color para Proveedor D
+                                            ],
+                                            borderColor: [
+                                                'rgba(255, 99, 132, 1)',
+                                                'rgba(54, 162, 235, 1)',
+                                                'rgba(255, 206, 86, 1)',
+                                                'rgba(75, 192, 192, 1)'
+                                            ],
+                                            borderWidth: 1
+                                        }]
+                                    };
+                            
+                                    // Configuración del gráfico
+                                    var ctx = document.getElementById('graficoPastel3').getContext('2d');
+                                    var graficoPastel = new Chart(ctx, {
+                                        type: 'pie',
+                                        data: datosC,
+                                        options: {
+                                            plugins: {
+                                                title: {
+                                                    display: true,
+                                                    text: 'Distribución de Cuentas por Pagar por Proveedor',
+                                                    font: {
+                                                        size: 18
+                                                    }
+                                                },
+                                                legend: {
+                                                    position: 'bottom',
+                                                }
+                                            }
+                                        }
+                                    });
+                                </script>
+                            </div>
+                        </div>
+                        <div class="center-flex">
+                            <div class="grf">
+                                <canvas id="graficoLineasCuentasPorCobrar" width="600" height="400"></canvas>
+                                <script>
+                                    // Datos de ejemplo para la evolución de cuentas por cobrar por cliente
+                                    const datosD = {
+                                        labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
+                                        datasets: [{
+                                            label: 'Cliente A',
+                                            data: [5000, 5500, 6000, 5800, 6200, 6300], // Datos ficticios de cuentas por cobrar para Cliente A
+                                            fill: false,
+                                            borderColor: 'rgba(255, 99, 132, 1)', // Color de la línea para Cliente A
+                                            borderWidth: 2,
+                                            pointBackgroundColor: 'rgba(255, 99, 132, 1)', // Color de los puntos para Cliente A
+                                            pointRadius: 5,
+                                            pointHoverRadius: 8
+                                        }, {
+                                            label: 'Cliente B',
+                                            data: [4500, 4800, 4900, 4700, 5000, 5200], // Datos ficticios de cuentas por cobrar para Cliente B
+                                            fill: false,
+                                            borderColor: 'rgba(54, 162, 235, 1)', // Color de la línea para Cliente B
+                                            borderWidth: 2,
+                                            pointBackgroundColor: 'rgba(54, 162, 235, 1)', // Color de los puntos para Cliente B
+                                            pointRadius: 5,
+                                            pointHoverRadius: 8
+                                        }]
+                                    };
+                            
+                                    // Configuración del gráfico
+                                    var ctx = document.getElementById('graficoLineasCuentasPorCobrar').getContext('2d');
+                                    var graficoLineasCuentasPorCobrar = new Chart(ctx, {
+                                        type: 'line',
+                                        data: datosD,
+                                        options: {
+                                            plugins: {
+                                                title: {
+                                                    display: true,
+                                                    text: 'Evolución de Cuentas por Cobrar por Cliente',
+                                                    font: {
+                                                        size: 18
+                                                    }
+                                                },
+                                                legend: {
+                                                    position: 'bottom',
+                                                }
+                                            },
+                                            scales: {
+                                                x: {
+                                                    title: {
+                                                        display: true,
+                                                        text: 'Mes'
+                                                    }
+                                                },
+                                                y: {
+                                                    title: {
+                                                        display: true,
+                                                        text: 'Cuentas por Cobrar'
+                                                    },
+                                                    beginAtZero: true
+                                                }
+                                            }
+                                        }
+                                    });
+                                </script>
+                            </div>
+                            <div class="grf">
+                                <canvas id="graficoAreaPresupuestoGasto" width="600" height="400"></canvas>
+                                <script>
+                                    // Datos de ejemplo para la comparación de presupuesto anual con gasto real
+                                    const datosF = {
+                                        labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                                        datasets: [{
+                                            label: 'Presupuesto Anual',
+                                            data: [5000, 5500, 6000, 5800, 6200, 6300, 6500, 6800, 7000, 7200, 7500, 7800], // Datos ficticios de presupuesto anual
+                                            fill: true,
+                                            backgroundColor: 'rgba(54, 162, 235, 0.6)', // Color del área para presupuesto anual
+                                            borderColor: 'rgba(54, 162, 235, 1)',
+                                            borderWidth: 1
+                                        }, {
+                                            label: 'Gasto Real',
+                                            data: [4800, 5200, 5800, 5600, 6000, 6200, 6400, 6600, 6800, 7000, 7200, 7400], // Datos ficticios de gasto real
+                                            fill: true,
+                                            backgroundColor: 'rgba(255, 99, 132, 0.6)', // Color del área para gasto real
+                                            borderColor: 'rgba(255, 99, 132, 1)',
+                                            borderWidth: 1
+                                        }]
+                                    };
+                            
+                                    // Configuración del gráfico
+                                    var ctx = document.getElementById('graficoAreaPresupuestoGasto').getContext('2d');
+                                    var graficoAreaPresupuestoGasto = new Chart(ctx, {
+                                        type: 'line',
+                                        data: datosF,
+                                        options: {
+                                            plugins: {
+                                                title: {
+                                                    display: true,
+                                                    text: 'Comparación de Presupuesto Anual con Gasto Real',
+                                                    font: {
+                                                        size: 18
+                                                    }
+                                                },
+                                                legend: {
+                                                    position: 'bottom',
+                                                }
+                                            },
+                                            scales: {
+                                                x: {
+                                                    title: {
+                                                        display: true,
+                                                        text: 'Mes'
+                                                    }
+                                                },
+                                                y: {
+                                                    title: {
+                                                        display: true,
+                                                        text: 'Cantidad'
+                                                    },
+                                                    beginAtZero: true
+                                                }
+                                            }
+                                        }
+                                    });
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+        <footer></footer>
+    </div>
+</body>
+
+</html>
